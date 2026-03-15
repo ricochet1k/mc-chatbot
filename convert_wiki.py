@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import subprocess
 import os
 import re
+import argparse
 
 def parse_params(inner):
     """Parses MediaWiki template parameters into a dict and a list of positional params."""
@@ -170,8 +171,14 @@ def convert_mediawiki_xml(xml_path, output_dir):
         print(f"\nSuccess! All files saved to: {os.path.abspath(output_dir)}")
     except Exception as e: print(f"Error: {e}")
 
-input_xml = os.path.expanduser("~/Downloads/Minecraft+Wiki-20260314190550.xml")
-output_folder = "minecraft_markdown_pages"
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Convert MediaWiki XML dump to Markdown")
+    parser.add_argument("xml_path", type=str, help="Path to the MediaWiki XML export file")
+    parser.add_argument("--output", type=str, default="minecraft_markdown_pages", help="Output directory for Markdown files")
+    
+    args = parser.parse_args()
+    
+    input_xml = os.path.expanduser(args.xml_path)
+    output_folder = args.output
+    
     convert_mediawiki_xml(input_xml, output_folder)

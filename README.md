@@ -39,11 +39,12 @@ pip install .
 
 ### 1. Preparing the Wiki Data
 
-If you have a MediaWiki XML export:
-1.  Update the `input_xml` path in `convert_wiki.py`.
-2.  Run the converter:
+1.  Go to [the minecraft wiki export page](https://minecraft.wiki/w/Special:Export)
+2.  Add pages from category `Gameplay`
+3.  Export and save it somewhere
+4.  Run the converter:
     ```bash
-    python convert_wiki.py
+    python convert_wiki.py {path_to_export.xml}
     ```
     This will populate the `minecraft_markdown_pages/` directory.
 
